@@ -16,6 +16,21 @@ class Settings(BaseSettings):
         "http://127.0.0.1:5174",
     ]
 
+    # ML & AI Settings
+    ML_MODELS_DIR: str = "./ml_models"
+    PREDICTION_RETRAIN_INTERVAL_HOURS: int = 24
+    ANOMALY_THRESHOLD: float = 0.7
+    MIN_TRAINING_SAMPLES: int = 30
+
+    # Open Banking
+    OPEN_BANKING_API_URL: str = ""
+    OPEN_BANKING_API_KEY: str = ""
+
+    # LLM / Chat Assistant
+    LLM_API_KEY: str = ""
+    LLM_MODEL: str = "gpt-4o-mini"
+    LLM_MAX_TOKENS: int = 1024
+
     class Config:
         env_file = ".env"
 

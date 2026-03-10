@@ -10,6 +10,16 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import InsightsPage from './pages/InsightsPage';
 import BudgetsPage from './pages/BudgetsPage';
 import SettingsPage from './pages/SettingsPage';
+import AdvancedAnalyticsPage from './pages/AdvancedAnalyticsPage';
+import PredictionsPage from './pages/PredictionsPage';
+import HeatmapPage from './pages/HeatmapPage';
+import SmartBudgetingPage from './pages/SmartBudgetingPage';
+import ChatPage from './pages/ChatPage';
+import NotificationsPage from './pages/NotificationsPage';
+import CollaborativePage from './pages/CollaborativePage';
+import InvestmentsPage from './pages/InvestmentsPage';
+import GoalsPage from './pages/GoalsPage';
+import FeedPage from './pages/FeedPage';
 import DashboardLayout from './layouts/DashboardLayout';
 
 function ProtectedRoute({ children }) {
@@ -36,6 +46,16 @@ function AppRoutes() {
         <Route path="/insights" element={<InsightsPage />} />
         <Route path="/budgets" element={<BudgetsPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/advanced-analytics" element={<AdvancedAnalyticsPage />} />
+        <Route path="/predictions" element={<PredictionsPage />} />
+        <Route path="/heatmaps" element={<HeatmapPage />} />
+        <Route path="/smart-budgets" element={<SmartBudgetingPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/collaborative" element={<CollaborativePage />} />
+        <Route path="/investments" element={<InvestmentsPage />} />
+        <Route path="/goals" element={<GoalsPage />} />
+        <Route path="/feed" element={<FeedPage />} />
       </Route>
 
       {/* Fallback */}

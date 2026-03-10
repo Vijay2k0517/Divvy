@@ -4,7 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import get_settings
 from .database import init_db, async_session
 from .seed import seed_demo_data
-from .routers import auth, dashboard, transactions, analytics, insights, budgets, users
+from .routers import (
+    auth, dashboard, transactions, analytics, insights, budgets, users,
+    predictions, categorization, anomalies, chat, bank_sync,
+    investments, notifications, collaborative, recommendations, goals,
+)
 
 settings = get_settings()
 
@@ -22,7 +26,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Divvy AI — Backend API",
     description="Premium AI Finance Tracker API",
-    version="1.0.0",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
@@ -35,7 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routers
+# ── Core Routers ──────────────────────────────────────
 app.include_router(auth.router)
 app.include_router(dashboard.router)
 app.include_router(transactions.router)
@@ -43,6 +47,18 @@ app.include_router(analytics.router)
 app.include_router(insights.router)
 app.include_router(budgets.router)
 app.include_router(users.router)
+
+# ── Enhancement Routers ──────────────────────────────
+app.include_router(predictions.router)         # 1. Advanced AI Prediction
+app.include_router(categorization.router)      # 2. ML Categorization
+app.include_router(anomalies.router)           # 3. Anomaly Detection
+app.include_router(chat.router)                # 4. Conversational AI
+app.include_router(bank_sync.router)           # 5. Open Banking Sync
+app.include_router(investments.router)         # 6. Investment Tracking
+app.include_router(notifications.router)       # 7. Notifications & Alerts
+app.include_router(collaborative.router)       # 8. Collaborative Budgeting
+app.include_router(recommendations.router)     # 9. Recommendation Engine
+app.include_router(goals.router)                # 10. Financial Goals
 
 
 @app.get("/")

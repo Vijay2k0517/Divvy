@@ -2,7 +2,7 @@
 import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from .models import User, Transaction, Budget
+from .models import User, Transaction, Budget, Goal
 from .auth import hash_password
 
 
@@ -94,6 +94,13 @@ DEMO_BUDGETS = [
     {"category": "Subscriptions", "budget": 3000, "color": "#fbbf24"},
 ]
 
+DEMO_GOALS = [
+    {"name": "Emergency Fund", "target_amount": 200000, "current_amount": 85000, "category": "emergency", "deadline": "2026-12-31"},
+    {"name": "Goa Vacation", "target_amount": 50000, "current_amount": 32000, "category": "vacation", "deadline": "2026-06-15"},
+    {"name": "New Laptop", "target_amount": 80000, "current_amount": 45000, "category": "purchase", "deadline": "2026-08-01"},
+    {"name": "Investment Corpus", "target_amount": 500000, "current_amount": 120000, "category": "investment", "deadline": "2027-03-31"},
+]
+
 
 async def seed_demo_data(db: AsyncSession):
     """Create demo user with transactions and budgets if not exists."""
@@ -129,6 +136,17 @@ async def seed_demo_data(db: AsyncSession):
             category=b["category"],
             budget=b["budget"],
             color=b["color"],
+        ))
+
+    # Add goals
+    for g in DEMO_GOALS:
+        db.add(Goal(
+            user_id=user.id,
+            name=g["name"],
+            target_amount=g["target_amount"],
+            current_amount=g["current_amount"],
+            category=g["category"],
+            deadline=datetime.date.fromisoformat(g["deadline"]),
         ))
 
     await db.commit()

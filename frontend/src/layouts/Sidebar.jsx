@@ -13,6 +13,15 @@ import {
   ChevronRight,
   Sparkles,
   X,
+  TrendingUp,
+  Grid3X3,
+  PiggyBank,
+  MessageSquare,
+  Bell,
+  Users,
+  LineChart,
+  Target,
+  Rss,
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -20,8 +29,18 @@ const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/transactions', icon: ArrowLeftRight, label: 'Transactions' },
   { to: '/analytics', icon: BarChart3, label: 'Analytics' },
+  { to: '/advanced-analytics', icon: LineChart, label: 'Deep Analytics' },
+  { to: '/predictions', icon: TrendingUp, label: 'Predictions' },
+  { to: '/heatmaps', icon: Grid3X3, label: 'Heatmaps' },
   { to: '/insights', icon: Brain, label: 'AI Insights' },
+  { to: '/feed', icon: Rss, label: 'Feed' },
+  { to: '/chat', icon: MessageSquare, label: 'AI Chat' },
   { to: '/budgets', icon: Wallet, label: 'Budgets' },
+  { to: '/smart-budgets', icon: PiggyBank, label: 'Smart Budgets' },
+  { to: '/collaborative', icon: Users, label: 'Collaborative' },
+  { to: '/investments', icon: LineChart, label: 'Investments' },
+  { to: '/goals', icon: Target, label: 'Goals' },
+  { to: '/notifications', icon: Bell, label: 'Notifications' },
   { to: '/settings', icon: Settings, label: 'Settings' },
 ];
 

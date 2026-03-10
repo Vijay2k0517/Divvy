@@ -16,7 +16,7 @@ export default function BudgetsPage() {
   const fetchBudgets = () => {
     setLoading(true);
     budgetsApi.list()
-      .then((res) => setBudgets(res.items || res))
+      .then((res) => setBudgets(res.budgets || res.items || res))
       .finally(() => setLoading(false));
   };
 

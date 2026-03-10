@@ -8,8 +8,18 @@ const pageTitles = {
   '/dashboard': 'Dashboard',
   '/transactions': 'Transactions',
   '/analytics': 'Analytics',
+  '/advanced-analytics': 'Deep Analytics',
+  '/predictions': 'AI Predictions',
+  '/heatmaps': 'Spending Heatmaps',
   '/insights': 'AI Insights',
+  '/feed': 'Your Feed',
+  '/chat': 'AI Chat',
   '/budgets': 'Budgets',
+  '/smart-budgets': 'Smart Budgets',
+  '/collaborative': 'Collaborative Budgets',
+  '/investments': 'Investments',
+  '/goals': 'Goals',
+  '/notifications': 'Notifications',
   '/settings': 'Settings',
 };
 

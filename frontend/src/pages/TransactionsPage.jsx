@@ -35,7 +35,8 @@ export default function TransactionsPage() {
     setLoading(true);
     txApi
       .list({ search: searchTerm, category: selectedCategory, limit: 100 })
-      .then((res) => setTxList(res.items || res))
+      .then((res) => setTxList(res.transactions || res.items || res))
+      .catch((err) => console.error('Failed to fetch transactions:', err))
       .finally(() => setLoading(false));
   }, [searchTerm, selectedCategory]);
 
@@ -44,7 +45,12 @@ export default function TransactionsPage() {
   }, [fetchTransactions]);
 
   useEffect(() => {
-    txApi.categories().then(setCategories).catch(() => {});
+    txApi.categories()
+      .then((res) => {
+        const cats = res.categories || res;
+        if (Array.isArray(cats)) setCategories(['All', ...cats.filter((c) => c !== 'All')]);
+      })
+      .catch(() => {});
   }, []);
 
   const handleAdd = async (e) => {
@@ -134,7 +140,13 @@ export default function TransactionsPage() {
 
           {/* Rows */}
           <div className="divide-y divide-white/[0.03]">
-            {filtered.length === 0 ? (
+            {loading ? (
+              <div className="px-6 py-4 space-y-3">
+                {[...Array(6)].map((_, i) => (
+                  <Skeleton key={i} className="h-12 rounded-lg" />
+                ))}
+              </div>
+            ) : filtered.length === 0 ? (
               <div className="px-6 py-16 text-center">
                 <div className="w-16 h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center mx-auto mb-4">
                   <Search className="w-7 h-7 text-white/15" />
@@ -143,7 +155,8 @@ export default function TransactionsPage() {
                 <p className="text-xs text-white/15 mt-1">Try adjusting your search or filter</p>
               </div>
             ) : (
-              filtered.map((tx, i) => (
+              <>
+              {filtered.map((tx, i) => (
                 <motion.div
                   key={tx.id}
                   initial={{ opacity: 0 }}
@@ -197,7 +210,8 @@ export default function TransactionsPage() {
                     </span>
                   </div>
                 </motion.div>
-              ))
+              ))}
+              </>
             )}
           </div>
         </GlassCard>
